@@ -31,6 +31,10 @@ class atop (
     default => 'stopped',
   }
 
+  if $facts['os']['family'] == 'RedHat' {
+    require ::epel
+  }
+
   package { $package_name:
     ensure => 'installed',
   }
