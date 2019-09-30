@@ -22,9 +22,9 @@
 class atop (
   $package_name = $atop::params::package_name,
   $service_name = $atop::params::service_name,
-  $service = $atop::params::service,
-  $interval = $atop::params::interval,
-  $logpath = $atop::params::logpath,
+  $service      = $atop::params::service,
+  $interval     = $atop::params::interval,
+  $logpath      = $atop::params::logpath,
 ) inherits atop::params {
   $service_state = $service ? {
     true    => 'running',
@@ -33,15 +33,17 @@ class atop (
 
   package { $package_name:
     ensure => 'installed',
-  } ->
-  file { $atop::params::conf_file:
+  }
+
+  -> file { $atop::params::conf_file:
     ensure  => 'file',
     owner   => $atop::params::conf_file_owner,
     group   => $atop::params::conf_file_group,
     mode    => $atop::params::conf_file_mode,
     content => template($atop::params::conf_file_template),
-  } ->
-  service { $service_name:
+  }
+
+  ->  service { $service_name:
     ensure => $service_state,
     enable => $service,
   }
