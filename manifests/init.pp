@@ -20,11 +20,12 @@
 #   Directory were the log will be saved by the service.
 #   Default is /var/log/atop.
 class atop (
-  $package_name = $atop::params::package_name,
-  $service_name = $atop::params::service_name,
-  $service      = $atop::params::service,
-  $interval     = $atop::params::interval,
-  $logpath      = $atop::params::logpath,
+  $package_name   = $atop::params::package_name,
+  $service_name   = $atop::params::service_name,
+  $service        = $atop::params::service,
+  $interval       = $atop::params::interval,
+  $loggenerations = $atop::params::loggenerations,
+  $logpath        = $atop::params::logpath,
 ) inherits atop::params {
   $service_state = $service ? {
     true    => 'running',

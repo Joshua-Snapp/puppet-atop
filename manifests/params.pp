@@ -6,6 +6,7 @@ class atop::params {
   $service_name = 'atop'
   $service = false
   $interval = 600
+  $loggenerations = 28
   $logpath = '/var/log/atop'
   $conf_file = $::osfamily ? {
     'Debian' => '/etc/default/atop',
